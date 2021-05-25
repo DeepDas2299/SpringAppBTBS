@@ -2,4 +2,5 @@ com.mph.controller
 com.mph.dao
 com.mph.entity
 com.mph.exception
+com.mph.main
 com.mph.service
