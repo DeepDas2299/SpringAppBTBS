@@ -1,0 +1,712 @@
+swagger: "2.0"
+info:
+
+  version: "1.0.0"
+  title: "Bus Ticket Booking System Rest Doc"
+
+host: "localhost:8080"
+basePath: "/bus-ticket-booking-system"
+tags:
+- name: role
+  description: "CRUD operations with Role"
+- name: discount
+  description: "CRUD operations with Discount"
+- name: bus
+  description: "CRUD aoperations with Bus"
+- name: user
+  description: "CRUD aoperations with User"
+- name: ticket
+  description: "CRUD aoperations with Ticket"
+- name: journey
+  description: "CRUD aoperations with Journey Details"
+schemes:
+- "http"
+paths:
+  /role/add:
+    post:
+      tags:
+      - "role"
+      summary: "Add a new Role"
+      description: ""
+      operationId: "addRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Role object that needs to be added"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+
+  /role/update:
+    put:
+      tags:
+      - "role"
+      summary: "Update an existing role"
+      description: ""
+      operationId: "updateRole"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Role object that needs to be updated"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "500":
+          description: "Role not Found"
+
+  /role/all:
+    get:
+      tags:
+      - "role"
+      summary: "Finds all roles" 
+      operationId: "findAllROles"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "OK"
+
+        "204":
+          description: "No Content"
+ 
+  /role/{roleId}:
+    get:
+      tags:
+      - "role"
+      summary: "Find role by ID"
+      description: "Returns a single Role"
+      operationId: "getRoleById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roleId"
+        in: "path"
+        description: "ID of role to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Role not found"
+   
+  /role/delete/{roleId}:
+    delete:
+      tags:
+      - "role"
+      summary: "Deletes a role"
+      description: ""
+      operationId: "deleteRole"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "roleId"
+        in: "path"
+        description: "Role id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Role not found"
+  /discount/add:
+    post:
+      tags:
+      - "discount"
+      summary: "Add a new Discount"
+      description: ""
+      operationId: "addDiscount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Discount object that needs to be added"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "200" :
+          description: "OK"
+        "204":
+          description: "No Content"
+  /discount/update:
+    put:
+      tags:
+      - "discount"
+      summary: "Update an existing Discount"
+      description: ""
+      operationId: "updateDiscount"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Discount object that needs to be updated"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "204":
+          description: "No Content"
+        "500":
+          description: "Role not Found"
+
+  /discount/all:
+    get:
+      tags:
+      - "discount"
+      summary: "Finds all Discounts" 
+      operationId: "findAllDiscount"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "string"
+        "204":
+          description: "No Content"
+ 
+  /discount/{discountId}:
+    get:
+      tags:
+      - "discount"
+      summary: "Find discount by ID"
+      description: "Returns a single discount"
+      operationId: "getDiscountById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "ID of pet to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "successful operation"
+        "500":
+          description: "Pet not found"
+          
+  /discount/bus/{busId}:
+    get:
+      tags:
+      - "discount"
+      summary: "Find discount by Bus ID"
+      description: "Returns a single discount"
+      operationId: "getDiscountByBusId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "busId"
+        in: "path"
+        description: "ID of bus to find by."
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "204":
+          description: "No Content"
+   
+  /discount/delete/{discountId}:
+    delete:
+      tags:
+      - "discount"
+      summary: "Deletes a Discount"
+      description: ""
+      operationId: "deleteDiscount"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "discountId"
+        in: "path"
+        description: "Role id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "500":
+          description: "Discount not found"
+          
+  /bus/add:
+    post:
+      tags:
+      - "bus"
+      summary: "Add a new Bus"
+      description: ""
+      operationId: "addBus"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bus object that needs to be added"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+
+  /bus/update:
+    put:
+      tags:
+      - "bus"
+      summary: "Update an existing Bus"
+      description: ""
+      operationId: "updateBus"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Bus object that needs to be updated"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "500":
+          description: "Bus not Found"
+
+  /bus/all:
+    get:
+      tags:
+      - "bus"
+      summary: "Finds all buses" 
+      operationId: "findAllBuses"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "OK"
+
+        "204":
+          description: "No Content"
+ 
+  /bus/{busId}:
+    get:
+      tags:
+      - "bus"
+      summary: "Find bus by ID"
+      description: "Returns a single Bus"
+      operationId: "getBusById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "busId"
+        in: "path"
+        description: "ID of Bus to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Bus not found"
+   
+  /bus/delete/{busId}:
+    delete:
+      tags:
+      - "role"
+      summary: "Deletes a bus"
+      description: ""
+      operationId: "deleteBus"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "busId"
+        in: "path"
+        description: "Bus id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Bus not found"
+  
+  /user/add:
+    post:
+      tags:
+      - "user"
+      summary: "Add a new User"
+      description: ""
+      operationId: "addUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+
+  /user/update:
+    put:
+      tags:
+      - "user"
+      summary: "Update an existing user"
+      description: ""
+      operationId: "updateUser"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User object that needs to be updated"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "500":
+          description: "User not Found"
+
+  /user/all:
+    get:
+      tags:
+      - "user"
+      summary: "Finds all users" 
+      operationId: "findAllUsers"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "OK"
+
+        "204":
+          description: "No Content"
+ 
+  /user/{userId}:
+    get:
+      tags:
+      - "user"
+      summary: "Find user by ID"
+      description: "Returns a single user"
+      operationId: "getUserById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "User not found"
+          
+  /user/email:
+    post:
+      tags:
+      - "user"
+      summary: "Find user by Email"
+      description: "Returns a single user"
+      operationId: "getUserByEmail"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User email that needs to be fetched"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "User not found"
+   
+  /user/delete/{userId}:
+    delete:
+      tags:
+      - "user"
+      summary: "Deletes a user"
+      description: ""
+      operationId: "deleteUser"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "User id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "User not found"
+          
+  /ticket/add:
+    post:
+      tags:
+      - "ticket"
+      summary: "Add a new Ticket"
+      description: ""
+      operationId: "addTicket"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Ticket object that needs to be added"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+
+  /ticket/all:
+    get:
+      tags:
+      - "ticket"
+      summary: "Finds all tickets" 
+      operationId: "findAllTickets"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "OK"
+
+        "204":
+          description: "No Content"
+ 
+  /ticket/{ticketId}:
+    get:
+      tags:
+      - "ticket"
+      summary: "Find ticket by ID"
+      description: "Returns a single ticket"
+      operationId: "getTicketById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ticketId"
+        in: "path"
+        description: "ID of ticket to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Ticket not found"
+   
+  /ticket/delete/{ticketId}:
+    delete:
+      tags:
+      - "ticket"
+      summary: "Deletes a ticket"
+      description: ""
+      operationId: "deleteTicket"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "ticketId"
+        in: "path"
+        description: "Ticket id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Ticket not found"
+          
+  /journey/add:
+    post:
+      tags:
+      - "journey"
+      summary: "Add a new Journey"
+      description: ""
+      operationId: "addJourney"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Journey object that needs to be added"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+
+  /journey/update:
+    put:
+      tags:
+      - "journey"
+      summary: "Update an existing journey"
+      description: ""
+      operationId: "updateJourney"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Journey object that needs to be updated"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "500":
+          description: "Journey not Found"
+  
+  /journey/all:
+    get:
+      tags:
+      - "journey"
+      summary: "Finds all journeys" 
+      operationId: "findAllJourneys"
+      produces:
+
+      - "application/json"
+     
+      responses:
+        "200":
+          description: "OK"
+
+        "204":
+          description: "No Content"
+ 
+  /journey/{journeyId}:
+    get:
+      tags:
+      - "journey"
+      summary: "Find journey by ID"
+      description: "Returns a single journey"
+      operationId: "getJourneyById"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journeyId"
+        in: "path"
+        description: "ID of journey to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Journey not found"
+  /journey/search:
+    post:
+      tags:
+      - "journey"
+      summary: "Search a journey"
+      description: ""
+      operationId: "searchJourney"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "JourneySearchModel object that needs to be fetched"
+        required: true
+        schema:
+          $ref: "string"
+      responses:
+        "204":
+          description: "No Content"
+        "500":
+          description: "Journey not Found"
+  /journey/delete/{journeyId}:
+    delete:
+      tags:
+      - "journey"
+      summary: "Deletes a journey"
+      description: ""
+      operationId: "deleteJourney"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "journeyId"
+        in: "path"
+        description: "Journey id to delete"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        "200":
+          description: "OK"
+        "500":
+          description: "Journey not found"
+
